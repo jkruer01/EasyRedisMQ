@@ -68,7 +68,7 @@ build:
   publish_nuget_symbols: true
   verbosity: minimal
 artifacts:
-- path: 
+- path: '*.nupkg'
   name: EasyRedisMQ
 deploy:
 - provider: GitHub
