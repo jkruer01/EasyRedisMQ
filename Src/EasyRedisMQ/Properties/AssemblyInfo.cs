@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EasyRedisMQ")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Simple .Net Message Queue that Uses Redis for the back end.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jeremy Kruer")]
 [assembly: AssemblyProduct("EasyRedisMQ")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

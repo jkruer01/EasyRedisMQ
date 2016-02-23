@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/jkruer01/EasyRedisMQ</projectUrl>
+    <licenseUrl>https://github.com/jkruer01/EasyRedisMQ/blob/master/LICENSE</licenseUrl>
+    <!--<iconUrl/>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+</package>
