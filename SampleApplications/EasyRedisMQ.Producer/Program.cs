@@ -8,12 +8,15 @@ using StructureMap.Graph;
 using System;
 using System.Diagnostics;
 
-namespace EasyRedisMQ.Console
+namespace EasyRedisMQ.Producer
 {
     class Program
     {
         static void Main(string[] args)
         {
+            //Sleep for 2 seconds to give the consumers time to start and subscribe to the message exchange.
+            System.Threading.Thread.Sleep(2000);
+
             var container = new Container(_ =>
             {
                 _.Scan(x =>
@@ -22,11 +25,10 @@ namespace EasyRedisMQ.Console
                     x.Assembly("EasyRedisMQ");
                     x.WithDefaultConventions();
                 });
-                
-                _.Policies.ConstructorSelector<StackExchangeRedisCacheClientWithSetGetCtorRule>();
+
+                _.For<IRedisCachingConfiguration>().Use<RedisCachingSectionHandler>(() => null);
                 _.For<ISerializer>().Singleton().Use<JilSerializer>().SelectConstructor(() => new JilSerializer());
-                _.For<ICacheClientExtended>().Singleton()
-                    .Use<StackExchangeRedisCacheClientWithSetGet>();
+                _.For<ICacheClientExtended>().Singleton().Use<StackExchangeRedisCacheClientWithSetGet>();
                 _.For<IMessageBroker>().Singleton().Use<MessageBroker>();
             });
 
@@ -34,7 +36,7 @@ namespace EasyRedisMQ.Console
             var messageBroker = container.GetInstance<IMessageBroker>();
 
             var stopWatch = new Stopwatch();
-            int numberOfMessagesToPublish = 100000;
+            int numberOfMessagesToPublish = 10000;
             stopWatch.Start();
             for(int x = 0; x <= numberOfMessagesToPublish; x++)
             {
@@ -44,20 +46,18 @@ namespace EasyRedisMQ.Console
                 });
             }
             stopWatch.Stop();
-            System.Console.WriteLine("Published {0} messages in {1} seconds. {2} messages per second.", numberOfMessagesToPublish, stopWatch.Elapsed.TotalSeconds, numberOfMessagesToPublish / stopWatch.Elapsed.TotalSeconds);
+            Console.WriteLine("Published {0} messages in {1} seconds. {2} messages per second.", numberOfMessagesToPublish, stopWatch.Elapsed.TotalSeconds, numberOfMessagesToPublish / stopWatch.Elapsed.TotalSeconds);
             
             while(true)
             {
-                System.Console.WriteLine("Enter message to be published. Ctrl+C to quit.");
-                var message = System.Console.ReadLine();
+                Console.WriteLine("Enter message to be published. Ctrl+C to quit.");
+                var message = Console.ReadLine();
                 messageBroker.PublishAsync<ConsoleMessage>(new ConsoleMessage
                 {
                     Message = message
                 });
-                System.Console.WriteLine("Message published successfully.");
+                Console.WriteLine("Message published successfully.");
             }
-
-
         }
     }
 }

@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66A1D839-0209-4552-8CFF-564001713125}</ProjectGuid>
+    <ProjectGuid>{F2BA9DF5-439D-4BDF-911C-E85C8CD2B143}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyRedisMQ.Server</RootNamespace>
-    <AssemblyName>EasyRedisMQ.Server</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>EasyRedisMQ.Console</RootNamespace>
+    <AssemblyName>EasyRedisMQ.Console</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyRedisMQ, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyRedisMQ.0.1.0.0\lib\net45\EasyRedisMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jil, Version=2.12.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jil.2.12.1\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
@@ -81,13 +86,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EasyRedisMQ\EasyRedisMQ.csproj">
-      <Project>{8c4c9b6d-0c8d-4bfb-bf9e-fdeaf7190add}</Project>
-      <Name>EasyRedisMQ</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SharedModels\SharedModels.csproj">
       <Project>{e22b27a9-76c2-4f68-beaa-6f4bf971ff86}</Project>
       <Name>SharedModels</Name>

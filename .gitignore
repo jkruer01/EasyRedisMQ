@@ -1,3 +1,13 @@
 Src/EasyRedisMQ/obj/
 Src/packages/
 Src/EasyRedisMQ/bin/
+SampleApplications/EasyRedisMQ.ADifferentConsumer/bin/
+SampleApplications/EasyRedisMQ.ADifferentConsumer/obj/
+SampleApplications/EasyRedisMQ.Consumer/bin/
+SampleApplications/EasyRedisMQ.Consumer/obj/
+SampleApplications/EasyRedisMQ.Consumer2/bin/
+SampleApplications/EasyRedisMQ.Consumer2/obj/
+SampleApplications/EasyRedisMQ.Producer/bin/
+SampleApplications/EasyRedisMQ.Producer/obj/
+SampleApplications/SharedModels/obj/
+SampleApplications/packages/

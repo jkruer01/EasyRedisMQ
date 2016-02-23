@@ -1,13 +1,14 @@
 ﻿using EasyRedisMQ.Clients;
 using SharedModels;
 using StackExchange.Redis.Extensions.Core;
+using StackExchange.Redis.Extensions.Core.Configuration;
 using StackExchange.Redis.Extensions.Jil;
 using StructureMap;
 using StructureMap.Graph;
 using System;
 using System.Threading.Tasks;
 
-namespace EasyRedisMQ.Server
+namespace EasyRedisMQ.Consumer2
 {
     public class Program
     {
@@ -21,21 +22,20 @@ namespace EasyRedisMQ.Server
                     x.Assembly("EasyRedisMQ");
                     x.WithDefaultConventions();
                 });
-
-                _.Policies.ConstructorSelector<StackExchangeRedisCacheClientWithSetGetCtorRule>();
+                
+                _.For<IRedisCachingConfiguration>().Use<RedisCachingSectionHandler>(() => null);
                 _.For<ISerializer>().Singleton().Use<JilSerializer>().SelectConstructor(() => new JilSerializer());
-                _.For<ICacheClientExtended>().Singleton()
-                    .Use<StackExchangeRedisCacheClientWithSetGet>();
+                _.For<ICacheClientExtended>().Singleton().Use<StackExchangeRedisCacheClientWithSetGet>();
                 _.For<IMessageBroker>().Singleton().Use<MessageBroker>();
             });
-
-            var messageBroker = container.GetInstance<IMessageBroker>();
             
-            var subscriber = messageBroker.SubscribeAsync<ConsoleMessage>("EasyRedisMQ.Server", async x => { await WriteConsoleMessageAsync(x); });
+            var messageBroker = container.GetInstance<IMessageBroker>();
 
-
-
-            Console.WriteLine("Listening for messages. Ctrl+C to quit.");
+            //This uses the same Subscriber ID as EasyRedisMQ.Consumer.
+            //These two applications will share the same queue and messages will be divided between the 2.
+            var subscriber = messageBroker.SubscribeAsync<ConsoleMessage>("EasyRedisMQ.Consumer", async x => { await WriteConsoleMessageAsync(x); });
+            
+            Console.WriteLine("EasyRedisMQ.Consumer2 is listening for messages. Ctrl+C to quit.");
             while(true)
             {
                 System.Threading.Thread.Sleep(500);

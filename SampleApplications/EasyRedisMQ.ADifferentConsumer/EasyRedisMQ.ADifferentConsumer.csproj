@@ -4,16 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8C4C9B6D-0C8D-4BFB-BF9E-FDEAF7190ADD}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{66A1D839-0209-4552-8CFF-564001713125}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyRedisMQ</RootNamespace>
-    <AssemblyName>EasyRedisMQ</AssemblyName>
+    <RootNamespace>EasyRedisMQ.ADifferentConsumer</RootNamespace>
+    <AssemblyName>EasyRedisMQ.ADifferentConsumer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyRedisMQ, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyRedisMQ.0.1.0.0\lib\net45\EasyRedisMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jil, Version=2.12.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jil.2.12.1\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
@@ -51,9 +58,17 @@
       <HintPath>..\packages\StackExchange.Redis.Extensions.Jil.1.2.0.0\lib\net45\StackExchange.Redis.Extensions.Jil.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StructureMap, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,32 +78,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\ICacheClientExtended.cs" />
-    <Compile Include="Clients\StackExchangeRedisCacheClientWithSetGet.cs" />
-    <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="Factories\ISubscriberFactory.cs" />
-    <Compile Include="Factories\SubscriberFactory.cs" />
-    <Compile Include="Models\Subscriber.cs" />
-    <Compile Include="Models\SubscriberInfo.cs" />
-    <Compile Include="Resolvers\ExchangeNameResolver.cs" />
-    <Compile Include="Resolvers\ExchangeSubscribersResolver.cs" />
-    <Compile Include="Resolvers\IExchangeNameResolver.cs" />
-    <Compile Include="Resolvers\IExchangeSubscribersResolver.cs" />
-    <Compile Include="IMessageBroker.cs" />
-    <Compile Include="MessageBroker.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resolvers\IQueueNameResolver.cs" />
-    <Compile Include="Resolvers\QueueNameResolver.cs" />
-    <Compile Include="Services\ExchangeSubscriberService.cs" />
-    <Compile Include="Services\IExchangeSubscriberService.cs" />
-    <Compile Include="Services\INotificationService.cs" />
-    <Compile Include="Services\NotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CoolWhipReadMe.md" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SharedModels\SharedModels.csproj">
+      <Project>{e22b27a9-76c2-4f68-beaa-6f4bf971ff86}</Project>
+      <Name>SharedModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
