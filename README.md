@@ -104,9 +104,11 @@ Dependencies
 ------------
 EasyRedisMQ uses the following dependencies:
 
-> [StackExchange.Redis.Extensions.Jil](https://github.com/imperugo/StackExchange.Redis.Extensions)
->[StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis)
->[Jil](https://github.com/kevin-montrose/Jil)
+> 1. [StackExchange.Redis.Extensions.Jil](https://github.com/imperugo/StackExchange.Redis.Extensions)
+
+> 2. [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis)
+
+> 3. [Jil](https://github.com/kevin-montrose/Jil)
 
 
 Inspiration
