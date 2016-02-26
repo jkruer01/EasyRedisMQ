@@ -13,5 +13,6 @@
     <description>$description$</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2015</copyright>
+	<tags>Redis Message Queue PubSub Messaging Async NoSQL Client Distributed Cache </tags>
   </metadata>
 </package>
