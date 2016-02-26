@@ -1,9 +1,9 @@
-﻿using EasyRedisMQ.Clients;
-using EasyRedisMQ.Resolvers;
+﻿using EasyRedisMQ.Resolvers;
 using System;
 using System.Threading.Tasks;
 using EasyRedisMQ.Models;
 using EasyRedisMQ.Services;
+using StackExchange.Redis.Extensions.Core;
 
 namespace EasyRedisMQ.Factories
 {
@@ -11,12 +11,12 @@ namespace EasyRedisMQ.Factories
     {
         private IQueueNameResolver _queueNameResolver;
         private IExchangeNameResolver _exchangeNameResolver;
-        private ICacheClientExtended _cacheClient;
+        private ICacheClient _cacheClient;
         private IExchangeSubscriberService _exchangeSubscriberService;
 
         public SubscriberFactory(IQueueNameResolver queueNameResolver, 
             IExchangeNameResolver exchangeNameResolver, 
-            ICacheClientExtended cacheClient, 
+            ICacheClient cacheClient, 
             IExchangeSubscriberService exchangeSubscriberService)
         {
             _queueNameResolver = queueNameResolver;

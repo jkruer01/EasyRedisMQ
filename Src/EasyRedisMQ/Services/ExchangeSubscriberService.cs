@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyRedisMQ.Models;
 using StackExchange.Redis.Extensions.Core;
 using EasyRedisMQ.Resolvers;
-using EasyRedisMQ.Clients;
+using System.Linq;
 
 namespace EasyRedisMQ.Services
 {
     public class ExchangeSubscriberService : IExchangeSubscriberService
     {
-        private readonly ICacheClientExtended _cacheClient;
+        private readonly ICacheClient _cacheClient;
         private IExchangeSubscribersResolver _exchangeSubscribersResolver;
 
-        public ExchangeSubscriberService(ICacheClientExtended cacheClient, IExchangeSubscribersResolver exchangeSubscribersResolver)
+        public ExchangeSubscriberService(ICacheClient cacheClient, IExchangeSubscribersResolver exchangeSubscribersResolver)
         {
             _cacheClient = cacheClient;
             _exchangeSubscribersResolver = exchangeSubscribersResolver;
@@ -30,7 +27,8 @@ namespace EasyRedisMQ.Services
         public async Task<List<SubscriberInfo>> GetSubscriberInfosAsync<T>() where T : class
         {
             var subscriberKey = _exchangeSubscribersResolver.GetSubscriberKey<T>();
-            return await _cacheClient.SetMembersAsync<SubscriberInfo>(subscriberKey);
+            var subscribers = await _cacheClient.SetMembersAsync<SubscriberInfo>(subscriberKey);
+            return subscribers.ToList();
         }
 
         public async Task PushMessageToSubscriberAsync<T>(SubscriberInfo subscriberInfo, T message) where T : class

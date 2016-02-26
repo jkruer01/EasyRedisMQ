@@ -1,5 +1,5 @@
-﻿using EasyRedisMQ.Clients;
-using EasyRedisMQ.Resolvers;
+﻿using EasyRedisMQ.Resolvers;
+using StackExchange.Redis.Extensions.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace EasyRedisMQ.Services
 {
     public class NotificationService : INotificationService
     {
-        private readonly ICacheClientExtended _cacheClient;
+        private readonly ICacheClient _cacheClient;
         private readonly IExchangeNameResolver _exchangeNameResolver;
 
-        public NotificationService(ICacheClientExtended cacheClient, IExchangeNameResolver exchangeNameResolver)
+        public NotificationService(ICacheClient cacheClient, IExchangeNameResolver exchangeNameResolver)
         {
             _cacheClient = cacheClient;
             _exchangeNameResolver = exchangeNameResolver;

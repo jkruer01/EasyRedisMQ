@@ -1,5 +1,4 @@
-﻿using EasyRedisMQ.Clients;
-using EasyRedisMQ.Factories;
+﻿using EasyRedisMQ.Factories;
 using EasyRedisMQ.Models;
 using EasyRedisMQ.Resolvers;
 using EasyRedisMQ.Services;

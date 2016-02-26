@@ -1,6 +1,6 @@
-﻿using EasyRedisMQ.Clients;
-using EasyRedisMQ.Extensions;
+﻿using EasyRedisMQ.Extensions;
 using EasyRedisMQ.Services;
+using StackExchange.Redis.Extensions.Core;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -9,10 +9,10 @@ namespace EasyRedisMQ.Models
 {
     public class Subscriber<T> where T : class
     {
-        private ICacheClientExtended _cacheClient;
+        private ICacheClient _cacheClient;
         private IExchangeSubscriberService _exchangeSubscriberService;
 
-        public Subscriber(ICacheClientExtended cacheClient, IExchangeSubscriberService exchangeSubscriberService)
+        public Subscriber(ICacheClient cacheClient, IExchangeSubscriberService exchangeSubscriberService)
         {
             _cacheClient = cacheClient;
             _exchangeSubscriberService = exchangeSubscriberService;
