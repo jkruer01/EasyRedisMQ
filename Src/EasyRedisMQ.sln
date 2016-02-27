@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRedisMQ", "EasyRedisMQ\EasyRedisMQ.csproj", "{8C4C9B6D-0C8D-4BFB-BF9E-FDEAF7190ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRedisMQ.Tests", "EasyRedisMQ.Tests\EasyRedisMQ.Tests.csproj", "{1F3070BD-B8B1-47A8-91C3-46B5E19E6F38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8C4C9B6D-0C8D-4BFB-BF9E-FDEAF7190ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C4C9B6D-0C8D-4BFB-BF9E-FDEAF7190ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C4C9B6D-0C8D-4BFB-BF9E-FDEAF7190ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3070BD-B8B1-47A8-91C3-46B5E19E6F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3070BD-B8B1-47A8-91C3-46B5E19E6F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3070BD-B8B1-47A8-91C3-46B5E19E6F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3070BD-B8B1-47A8-91C3-46B5E19E6F38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,7 +19,7 @@ namespace EasyRedisMQ.Models
         }
 
         public SubscriberInfo SubscriberInfo { get; set; }
-        public Func<T, Task> OnMessageAsync { get; internal set; }
+        public Func<T, Task> OnMessageAsync { get; set; }
 
         public async Task InitializeAsync()
         {
@@ -27,6 +27,7 @@ namespace EasyRedisMQ.Models
             if (string.IsNullOrWhiteSpace(SubscriberInfo.SubscriberId)) throw new NullReferenceException("SubscriberId is required");
             if (string.IsNullOrWhiteSpace(SubscriberInfo.ExchangeName)) throw new NullReferenceException("ExchangeName is required");
             if (string.IsNullOrWhiteSpace(SubscriberInfo.QueueName)) throw new NullReferenceException("QueueName is required");
+            if (OnMessageAsync == null) throw new NullReferenceException("OnMessageAsync is required");
 
             await _cacheClient.SubscribeAsync<string>(SubscriberInfo.ExchangeName, DoWorkAsync);
 
@@ -35,15 +36,7 @@ namespace EasyRedisMQ.Models
 
         private async Task<T> GetNextMessageAsync()
         {
-            try
-            {
-                return await _cacheClient.ListGetFromRightAsync<T>(SubscriberInfo.QueueName);
-            }
-            catch(Exception e)
-            {
-                //The StackExchange.Redis.Extensions throws an exception if there is nothing in the queue
-                return null;
-            }
+            return await _cacheClient.ListGetFromRightAsync<T>(SubscriberInfo.QueueName);
         }
 
         private async Task DoWorkAsync(string arg)

@@ -11,3 +11,7 @@ SampleApplications/EasyRedisMQ.Producer/bin/
 SampleApplications/EasyRedisMQ.Producer/obj/
 SampleApplications/SharedModels/obj/
 SampleApplications/packages/
+Src/EasyRedisMQ.Tests/obj/
+Src/EasyRedisMQ.Tests/bin/
+Src/TestResults/7f2a4749-17c7-4f6b-a849-b8c4e4dba440/
+Src/TestResults/
