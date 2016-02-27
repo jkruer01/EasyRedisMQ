@@ -1,7 +1,5 @@
-﻿using EasyRedisMQ.Clients;
-using SharedModels;
+﻿using SharedModels;
 using StackExchange.Redis.Extensions.Core;
-using StackExchange.Redis.Extensions.Core.Configuration;
 using StackExchange.Redis.Extensions.Jil;
 using StructureMap;
 using StructureMap.Graph;
@@ -22,11 +20,9 @@ namespace EasyRedisMQ.Consumer2
                     x.Assembly("EasyRedisMQ");
                     x.WithDefaultConventions();
                 });
-                
-                _.For<IRedisCachingConfiguration>().Use<RedisCachingSectionHandler>(() => null);
-                _.For<ISerializer>().Singleton().Use<JilSerializer>().SelectConstructor(() => new JilSerializer());
-                _.For<ICacheClientExtended>().Singleton().Use<StackExchangeRedisCacheClientWithSetGet>();
-                _.For<IMessageBroker>().Singleton().Use<MessageBroker>();
+
+                _.For<ISerializer>().Singleton().Use(c => new JilSerializer());
+                _.For<ICacheClient>().Singleton().Use(c => new StackExchangeRedisCacheClient(c.GetInstance<ISerializer>(), null));
             });
             
             var messageBroker = container.GetInstance<IMessageBroker>();
