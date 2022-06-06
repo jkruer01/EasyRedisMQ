@@ -5,7 +5,7 @@ A Simple .Net Message Queue that Uses Redis for the back end.
 Introduction
 ------------
 
-EasyRedisMQ is designed to be a light weight message queue system that is built on top of redis.  It is complete written in C#.
+EasyRedisMQ is designed to be a light weight message queue system that is built on top of redis.  It is completely written in C#.
 
 It is not trying to compete with full featured message queue systems such as RabbitMQ. However, it also has more features built in than the basic redis pub/sub implementation. If you don't need a full blown message queue system such as RabbitMQ but the built in pub/sub features of redis are not enough, then EasyRedisMQ may be the right solution for you.
 
